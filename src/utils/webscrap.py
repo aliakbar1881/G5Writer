@@ -1,21 +1,22 @@
+"""
+    Get data from network and parse it.
+"""
 import requests
 from bs4 import BeautifulSoup
-import time
 
+from src.utils.sleep import sleep
 
 #  get phonetic from web
-def word_request(word):
-    r = requests.get(f'https://easypronunciation.com/en/english/word/{word}')
-    if r.status_code == requests.codes.ok :
-        Html_content = r.content
-        soup = BeautifulSoup(Html_content, "html.parser")
-        phonetic = soup.h4.get_text()
-        return phonetic
-    else:
-        print(f'Request to {word} is not successily!')
-    time.sleep(10)
+@sleep
+def word_phonetic(word):
+    result = requests.get(f'https://dictionary.cambridge.org/dictionary/english/{word}')
+    if result.status_code == 200:
+        html_content = result.text
+        soup = BeautifulSoup(html_content, "html.parser")
+        phonetic = soup.body.find('span', class_="ipa dipa lpr-2 lpl-1").stripped_strings()
+    return phonetic
 
 
 if __name__ == '__main__':
-    word_request('instance')
-
+    print(word_phonetic)
+    word_phonetic('content')
