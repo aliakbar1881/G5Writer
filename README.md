@@ -1,8 +1,8 @@
 # G5Writer
-This is a python code and python libraries for a university  project
+This is a python code and python libraries for an university  project
 
 What is G5:
->G5 learner way is an efficient way for memorizing any thing such as English words Mathmathic algebra and ...
+>G5 learner is an efficient way for memorizing any thing such as English words Mathmathic algebra and ...
 
 ## HOW run:
 run these command in your main directory of G5Writer
